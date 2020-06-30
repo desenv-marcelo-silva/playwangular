@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { RestaurantComponent } from './restaurant/restaurant.component'
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantItemComponent } from './restaurant/restaurant-item/restaurant-item.component'
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component'
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    RestaurantItemComponent
   ],
   imports: [
     BrowserModule,
