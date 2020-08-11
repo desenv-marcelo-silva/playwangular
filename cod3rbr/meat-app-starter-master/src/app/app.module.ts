@@ -1,17 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpModule } from "@angular/http";
+import { RouterModule } from "@angular/router";
 
-import { ROUTES } from './app.routes';
+import { ROUTES } from "./app.routes";
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantItemComponent } from './restaurant/restaurant-item/restaurant-item.component'
-import { RestaurantService } from './restaurant/restaurant.service';
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./header/header.component";
+import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
+import { RestaurantComponent } from "./restaurant/restaurant.component";
+import { RestaurantItemComponent } from "./restaurant/restaurant-item/restaurant-item.component";
+import { RestaurantService } from "./restaurant/restaurant.service";
+import { RestaurantDetailComponent } from "./restaurant-detail/restaurant-detail.component";
+import { MenuComponent } from "./restaurant-detail/menu/menu.component";
+import { ShoppingCartComponent } from "./restaurant-detail/shopping-cart/shopping-cart.component";
+import { MenuItemComponent } from "./restaurant-detail/menu-item/menu-item.component";
 
 @NgModule({
   declarations: [
@@ -20,14 +24,14 @@ import { RestaurantService } from './restaurant/restaurant.service';
     HomeComponent,
     AboutComponent,
     RestaurantComponent,
-    RestaurantItemComponent
+    RestaurantItemComponent,
+    RestaurantDetailComponent,
+    MenuComponent,
+    ShoppingCartComponent,
+    MenuItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    RouterModule.forRoot(ROUTES)
-  ],
+  imports: [BrowserModule, HttpModule, RouterModule.forRoot(ROUTES)],
   providers: [RestaurantService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
