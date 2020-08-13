@@ -28,7 +28,6 @@ export class ShoppingCartService {
   }
 
   increaseQty(item: CartItem) {
-    console.log("chegou no shopping cart");
     item.quantity = item.quantity + 1;
   }
 
