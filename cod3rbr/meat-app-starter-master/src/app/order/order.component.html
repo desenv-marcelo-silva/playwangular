@@ -20,8 +20,16 @@
           <p class="lead">Endereço de Entrega:</p>
         </div>
         <div class="col-sm-6 col-xs-12">
-          <div class="form-group">
-            <label class="control-label sr-only" for="inputSuccess"
+          <div
+            class="form-group"
+            [class.has-success]="
+              iptAddress.valid && (iptAddress.dirty || iptAddress.touched)
+            "
+            [class.has-error]="
+              !iptAddress.valid && (iptAddress.dirty || iptAddress.touched)
+            "
+          >
+            <label class="control-label sr-only" for="address"
               ><i class="fa fa-check"></i> Endereço</label
             >
             <input
@@ -30,13 +38,38 @@
               placeholder="Endereço"
               name="address"
               ngModel
+              required
+              minlength="5"
+              #iptAddress="ngModel"
+              autocomplete="off"
             />
-            <span class="help-block"></span>
+            <span
+              class="help-block"
+              *ngIf="
+                iptAddress.valid && (iptAddress.dirty || iptAddress.touched)
+              "
+              ><i class="fa fa-check"></i> Ok</span
+            >
+            <span
+              class="help-block"
+              *ngIf="
+                !iptAddress.valid && (iptAddress.dirty || iptAddress.touched)
+              "
+              ><i class="fa fa-remove"></i> Campo obrigatório</span
+            >
           </div>
         </div>
         <div class="col-sm-2 col-xs-6">
-          <div class="form-group has-success">
-            <label class="control-label sr-only" for="inputSuccess"
+          <div
+            class="form-group"
+            [class.has-success]="
+              iptNumber.valid && (iptNumber.dirty || iptNumber.touched)
+            "
+            [class.has-error]="
+              !iptNumber.valid && (iptNumber.dirty || iptNumber.touched)
+            "
+          >
+            <label class="control-label sr-only" for="number"
               ><i class="fa fa-check"></i> Número</label
             >
             <input
@@ -45,13 +78,25 @@
               name="number"
               ngModel
               placeholder="Número"
+              #iptNumber="ngModel"
+              autocomplete="off"
+              required
             />
-            <span class="help-block"><i class="fa fa-check"></i> Ok</span>
+            <span
+              class="help-block"
+              *ngIf="iptNumber.valid && (iptNumber.dirty || iptNumber.touched)"
+              ><i class="fa fa-check"></i> Ok</span
+            >
+            <span
+              class="help-block"
+              *ngIf="!iptNumber.valid && (iptNumber.dirty || iptNumber.touched)"
+              ><i class="fa fa-remove"></i> Campo obrigatório</span
+            >
           </div>
         </div>
         <div class="col-sm-4 col-xs-6">
-          <div class="form-group has-error">
-            <label class="control-label sr-only" for="inputSuccess"
+          <div class="form-group">
+            <label class="control-label sr-only" for="optional"
               ><i class="fa fa-check"></i> Complemento</label
             >
             <input
@@ -61,9 +106,6 @@
               ngModel
               placeholder="Complemento"
             />
-            <span class="help-block"
-              ><i class="fa fa-remove"></i> Help block with error</span
-            >
           </div>
         </div>
         <!-- /.col -->
@@ -229,9 +271,9 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <a href="order-summary.html" class="btn btn-success pull-right"
-          ><i class="fa fa-credit-card"></i> Concluir Pedido
-        </a>
+        <button class="btn btn-success pull-right" [disabled]="!form.valid">
+          <i class="fa fa-credit-card"></i> Concluir Pedido
+        </button>
       </div>
     </div>
   </section>
