@@ -5,7 +5,7 @@ import {
   Input,
   ContentChild,
 } from "@angular/core";
-import { NgModel } from "@angular/forms";
+import { NgModel, FormControlName } from "@angular/forms";
 
 @Component({
   selector: "mt-input-container",
@@ -18,16 +18,17 @@ export class InputComponent implements AfterContentInit, OnInit {
   @Input() errorMessage: string;
 
   @ContentChild(NgModel) model: NgModel;
+  @ContentChild(FormControlName) control: FormControlName;
 
   constructor() {}
 
   ngOnInit() {}
 
   ngAfterContentInit(): void {
-    this.inputToUseLikeAReference = this.model;
+    this.inputToUseLikeAReference = this.model || this.control;
     if (this.inputToUseLikeAReference === undefined) {
       throw new Error(
-        "Esse componente precisa ser usado com uma diretiva ngModel"
+        "Esse componente precisa ser usado com uma diretiva ngModel ou formControlName"
       );
     }
   }
