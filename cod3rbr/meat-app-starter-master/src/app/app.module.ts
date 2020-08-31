@@ -22,7 +22,6 @@ import { ShoppingCartComponent } from "./restaurant-detail/shopping-cart/shoppin
 
 import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 import { SharedModule } from "./shared/shared.module";
-import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { CoreModule } from "./core/core.module";
   imports: [
     BrowserModule,
     HttpModule,
-    CoreModule,
-    SharedModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES),
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pt-BR" }],
