@@ -2,7 +2,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms";
 
 import { ROUTES } from "./app.routes";
 
@@ -23,13 +22,11 @@ import { ReviewsComponent } from "./restaurant-detail/reviews/reviews.component"
 import { ShoppingCartComponent } from "./restaurant-detail/shopping-cart/shopping-cart.component";
 import { ShoppingCartService } from "./restaurant-detail/shopping-cart/shopping-cart.service";
 import { OrderComponent } from "./order/order.component";
-import { InputComponent } from "./shared/input/input.component";
-import { RadioComponent } from "./shared/radio/radio.component";
 import { OrderItemsComponent } from "./order/order-items/order-items.component";
 import { OrderService } from "./order/order.service";
 import { DeliveryCostsComponent } from "./order/delivery-costs/delivery-costs.component";
 import { OrderSummaryComponent } from "./order-summary/order-summary.component";
-import { RatingComponent } from "./shared/rating/rating.component";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -44,17 +41,14 @@ import { RatingComponent } from "./shared/rating/rating.component";
     MenuItemComponent,
     ReviewsComponent,
     OrderComponent,
-    InputComponent,
-    RadioComponent,
     OrderItemsComponent,
     DeliveryCostsComponent,
     OrderSummaryComponent,
-    RatingComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
+    SharedModule,
     RouterModule.forRoot(ROUTES),
   ],
   providers: [
