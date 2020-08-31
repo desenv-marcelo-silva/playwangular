@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 
-import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
 import { RestaurantComponent } from "./restaurant/restaurant.component";
 
@@ -13,7 +12,7 @@ import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
-  { path: "about", component: AboutComponent },
+  { path: "about", loadChildren: "./about/about.module#AboutModule" },
   { path: "restaurant", component: RestaurantComponent },
   {
     path: "restaurant/:id",
