@@ -6,6 +6,10 @@ import {
   transition,
   animate,
 } from "@angular/animations";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/timer";
+
+import { NotificationService } from "../notification.service";
 
 @Component({
   selector: "mt-snackbar",
@@ -27,8 +31,8 @@ import {
           bottom: "30px",
         })
       ),
-      transition("hidden => visible", animate("500ms 0s ease-in")),
-      transition("visible => hidden", animate("300ms 0s ease-out")),
+      transition("hidden => visible", animate("300ms 0s ease-in")),
+      transition("visible => hidden", animate("250ms 0s ease-out")),
     ]),
   ],
 })
@@ -36,7 +40,16 @@ export class SnackbarComponent implements OnInit {
   message = "Hello snackbar";
   snackVisibility = "hidden";
 
-  constructor() {}
+  constructor(private notificationService: NotificationService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.notificationService.notifier.subscribe((message) => {
+      this.message = message;
+      this.snackVisibility = "visible";
+      Observable.timer(3000).subscribe((timer) => {
+        console.log(timer);
+        this.snackVisibility = "hidden";
+      });
+    });
+  }
 }
