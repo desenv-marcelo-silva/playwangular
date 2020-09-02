@@ -3,6 +3,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
 import { RouterModule, PreloadAllModules } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+
 import { ROUTES } from "./app.routes";
 
 import { AppComponent } from "./app.component";
@@ -48,7 +50,10 @@ import { NotFoundComponent } from "./not-found/not-found.component";
       preloadingStrategy: PreloadAllModules,
     }),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pt-BR" }],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LOCALE_ID, useValue: "pt-BR" },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
