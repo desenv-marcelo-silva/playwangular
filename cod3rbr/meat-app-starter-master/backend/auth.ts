@@ -7,7 +7,7 @@ export const handleAuthentication = (req: Request, res: Response) => {
   const user: User = req.body;
 
   if (isValid(user)) {
-    const dbUser: User = users[user.email];
+    const dbUser = users[user.email];
     const token = jwt.sign(
       { sub: dbUser.email, iss: "meat-api" },
       "meat-api-password"
