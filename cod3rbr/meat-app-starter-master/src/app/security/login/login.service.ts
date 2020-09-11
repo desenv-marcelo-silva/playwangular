@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/do";
 
@@ -9,7 +9,7 @@ import { MEAT_API } from "../../app.api";
 
 @Injectable()
 export class LoginService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   user: User;
 
@@ -26,5 +26,9 @@ export class LoginService {
     return this.http
       .post<User>(`${MEAT_API}/login`, { email, password }, httpOptions)
       .do((user) => (this.user = user));
+  }
+
+  handleLogin(path?: string): void {
+    this.router.navigate(["/login", path]);
   }
 }

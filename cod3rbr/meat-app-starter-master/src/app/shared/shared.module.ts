@@ -7,6 +7,7 @@ import { RestaurantService } from "app/restaurant/restaurant.service";
 import { OrderService } from "app/order/order.service";
 import { NotificationService } from "./messages/notification.service";
 import { LoginService } from "../security/login/login.service";
+import { LoggedInGuard } from "app/security/logged-in.guard";
 
 import { InputComponent } from "./input/input.component";
 import { RadioComponent } from "./radio/radio.component";
@@ -41,6 +42,7 @@ export class SharedModule {
         ShoppingCartService,
         NotificationService,
         LoginService,
+        LoggedInGuard,
       ],
     };
   }
