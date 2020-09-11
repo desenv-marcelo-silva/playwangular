@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 var jsonServer = require("json-server");
-var fs = require("fs");
-var https = require("https");
+// import * as fs from "fs";
+// import * as http from "http";
 var auth_1 = require("./auth");
 var authz_1 = require("./authz");
 var server = jsonServer.create();
@@ -17,10 +17,13 @@ server.post("/login", auth_1.handleAuthentication);
 server.use("/orders", authz_1.handleAuthorization);
 // Use default router
 server.use(router);
-var options = {
-    cert: fs.readFileSync("./backend/keys/cert.pem"),
-    key: fs.readFileSync("./backend/keys/key.pem")
-};
-https.createServer(options, server).listen(4205, function () {
-    console.log("JSON Server is running on https://localhost:4205");
+// const options = {
+//   cert: fs.readFileSync("./backend/keys/cert.pem"),
+//   key: fs.readFileSync("./backend/keys/key.pem"),
+// };
+// https.createServer(options, server).listen(4205, () => {
+//   console.log("JSON Server is running on https://localhost:4205");
+// });
+server.listen(4205, function () {
+    console.log("JSON Server is running on http://localhost:4205");
 });

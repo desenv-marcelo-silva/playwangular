@@ -1,8 +1,8 @@
-import * as jsonServer from "json-server";
 import { Express } from "express";
 
-import * as fs from "fs";
-import * as https from "https";
+import * as jsonServer from "json-server";
+// import * as fs from "fs";
+// import * as http from "http";
 
 import { handleAuthentication } from "./auth";
 import { handleAuthorization } from "./authz";
@@ -23,11 +23,15 @@ server.use("/orders", handleAuthorization);
 // Use default router
 server.use(router);
 
-const options = {
-  cert: fs.readFileSync("./backend/keys/cert.pem"),
-  key: fs.readFileSync("./backend/keys/key.pem"),
-};
+// const options = {
+//   cert: fs.readFileSync("./backend/keys/cert.pem"),
+//   key: fs.readFileSync("./backend/keys/key.pem"),
+// };
 
-https.createServer(options, server).listen(4205, () => {
-  console.log("JSON Server is running on https://localhost:4205");
+// https.createServer(options, server).listen(4205, () => {
+//   console.log("JSON Server is running on https://localhost:4205");
+// });
+
+server.listen(4205, () => {
+  console.log("JSON Server is running on http://localhost:4205");
 });
