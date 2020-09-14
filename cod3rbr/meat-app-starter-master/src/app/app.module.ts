@@ -3,6 +3,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule, PreloadAllModules } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { registerLocaleData } from "@angular/common";
+import localePt from "@angular/common/locales/pt";
+
+registerLocaleData(localePt, "pt");
 
 import { ROUTES } from "./app.routes";
 
@@ -56,7 +60,7 @@ import { ApplicationErrorHandler } from "./app.error-handler";
     }),
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: "pt-BR" },
+    { provide: LOCALE_ID, useValue: "pt" },
     { provide: ErrorHandler, useClass: ApplicationErrorHandler },
   ],
   bootstrap: [AppComponent],
