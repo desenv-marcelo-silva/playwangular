@@ -27,6 +27,8 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from "./security/login/login.component";
 import { UserDetailComponent } from "./header/user-detail/user-detail.component";
 
+import { ApplicationErrorHandler } from "./app.error-handler";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,10 @@ import { UserDetailComponent } from "./header/user-detail/user-detail.component"
       preloadingStrategy: PreloadAllModules,
     }),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pt-BR" }],
+  providers: [
+    { provide: LOCALE_ID, useValue: "pt-BR" },
+    { provide: ErrorHandler, useClass: ApplicationErrorHandler },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
