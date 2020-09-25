@@ -47,6 +47,7 @@ import { MenuItem } from "app/restaurant-detail/menu-item/menu-item.model";
       ),
     ]),
   ],
+  preserveWhitespaces: true,
 })
 export class ShoppingCartComponent implements OnInit {
   rowState = "ready";
