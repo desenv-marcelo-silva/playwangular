@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
   AbstractControl,
@@ -42,9 +43,9 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group(
+    this.orderForm = new FormGroup(
       {
-        name: this.formBuilder.control("", [
+        name: new FormControl("", [
           Validators.required,
           Validators.minLength(5),
         ]),
@@ -67,7 +68,7 @@ export class OrderComponent implements OnInit {
         optionalAddress: this.formBuilder.control(""),
         paymentOption: this.formBuilder.control("", [Validators.required]),
       },
-      { validator: OrderComponent.equalsTo }
+      { validators: [OrderComponent.equalsTo], updateOn: "blur" }
     );
   }
 
