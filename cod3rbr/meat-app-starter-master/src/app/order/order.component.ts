@@ -8,7 +8,7 @@ import {
   AbstractControl,
 } from "@angular/forms";
 
-import "rxjs/add/operator/do";
+import { tap } from "rxjs/operators";
 
 import { CartItem } from "./../restaurant-detail/shopping-cart/cart-item.model";
 import { OrderService } from "./order.service";
@@ -111,9 +111,11 @@ export class OrderComponent implements OnInit {
     );
     this.orderService
       .checkOrder(order)
-      .do((orderId: string) => {
-        this.orderId = orderId;
-      })
+      .pipe(
+        tap((orderId: string) => {
+          this.orderId = orderId;
+        })
+      )
       .subscribe((orderId: string) => {
         this.router.navigate(["/order-summary"]);
         this.orderService.clear();
