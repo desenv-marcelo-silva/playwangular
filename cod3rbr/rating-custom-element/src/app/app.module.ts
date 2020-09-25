@@ -11,9 +11,13 @@ import { RatingComponent } from './rating.component';
 })
 export class AppModule {
   constructor(private injector: Injector) {
-    const component = createCustomElement(RatingComponent, { injector });
+    const component = createCustomElement(RatingComponent, {
+      injector: this.injector,
+    });
 
-    customElements.define('mt-rating', component);
+    if (!customElements.get('mt-rating')) {
+      customElements.define('mt-rating', component);
+    }
   }
 
   ngDoBootstrap() {}
