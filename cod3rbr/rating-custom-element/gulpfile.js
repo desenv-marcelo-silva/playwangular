@@ -1,26 +1,29 @@
-var gulp = require("gulp");
-var concat = require("gulp-concat");
-var rename = require("gulp-rename");
+const { series, src, dest } = require("gulp");
+const concat = require("gulp-concat");
+const rename = require("gulp-rename");
 
-gulp.task("concat", function () {
-  return gulp
-    .src("./dist/ratio-custom-element/*.js")
+function _concat(cb) {
+  return src("./dist/rating-custom-element/*.js")
     .pipe(concat("rating.js"))
-    .pipe(gulp.dest("./dist/element"));
-});
+    .pipe(dest("./dist/element"));
 
-gulp.task("rename", function () {
-  return gulp
-    .src("./dist/ratio-custom-element/*.css")
+  cb();
+}
+
+function _rename(cb) {
+  return src("./dist/rating-custom-element/*.css")
     .pipe(rename("rating.css"))
-    .pipe(gulp.dest("./dist/element"));
-});
+    .pipe(dest("./dist/element"));
 
-// fonts
-gulp.task("fonts", function () {
-  return gulp
-    .src(["./dist/ratio-custom-element/fontawesome-webfont.*"])
-    .pipe(gulp.dest("./dist/element"));
-});
+  cb();
+}
 
-gulp.task("default", ["concat", "rename", "fonts"]);
+function _fonts(cb) {
+  return src(["./dist/rating-custom-element/fontawesome-webfont.*"]).pipe(
+    dest("./dist/element")
+  );
+
+  cb();
+}
+
+exports.default = series(_concat, _rename, _fonts);
